@@ -1,24 +1,61 @@
-# README
+[build-page]: https://semaphoreci.com/coderdojobraga/bokken
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Bokken
 
-Things you may want to cover:
+[![Build Status](https://semaphoreci.com/api/v1/coderdojobraga/bokken/branches/master/badge.svg)](https://semaphoreci.com/coderdojobraga/bokken)
+[![Trello](https://img.shields.io/badge/trello-board-blue.svg?style=flat-square)](https://trello.com/b/edBmziLg/cdm-webapp)
+[![Staging](https://img.shields.io/badge/server-staging-orange.svg?style=flat-square)](https://bokken-staging.herokuapp.com)
+[![Production](https://img.shields.io/badge/server-production-red.svg?style=flat-square)](https://bokken-production.herokuapp.com)
 
-* Ruby version
+This is the app for ninja management and training within CoderDojo Minho.
 
-* System dependencies
+We use it to track ninja progress, secret missions (homework) and belt ranks.
 
-* Configuration
+**Table of Contents**
 
-* Database creation
+* [Setup](#setup)
+* [Development](#development)
+* [Deployment](#deployment)
 
-* Database initialization
+Setup
+-----
 
-* How to run the test suite
+First, clone & setup the repository:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+git clone git@github.com:coderdojominho/bokken.git
+cd bokken
+bin/setup
+```
 
-* Deployment instructions
+Development
+-----------
 
-* ...
+To start your development environment run:
+
+```
+bin/server
+```
+
+This will start the Rails app.
+
+Deployment
+----------
+
+Deploys are run through [Semaphore][build-page]. They are deployed automatically
+to staging when the build on master is green and manually to production.
+
+You can also add `production` and `staging` remotes to deploy. We recommend using [`parity`](https://github.com/thoughtbot/parity) to manage it.
+
+```shell
+git remote add staging <heroku-staging-url>
+git remote add production <heroku-production-url>
+
+# deploying with parity:
+staging deploy
+production deploy
+
+# deploying through git:
+git push staging master
+git push production master
+```
