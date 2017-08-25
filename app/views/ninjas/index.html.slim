@@ -1,0 +1,17 @@
+p#notice= notice
+h1 Ninjas
+= link_to 'New Ninja', new_ninja_path
+= stylesheet_link_tag "table"
+table
+  thead
+    tr
+      th Nome
+      th Numero sessoes como ninja
+      th Numero sessoes como mentor
+  tbody
+    - @ninjas.order('nome').each do |ninja|
+      tr
+        td= link_to ninja.nome, ninja
+        td= ninja.n_ninja
+        td= ninja.n_mentor
+br/
