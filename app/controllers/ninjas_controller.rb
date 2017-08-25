@@ -28,7 +28,7 @@ class NinjasController < ApplicationController
 
     respond_to do |format|
       if @ninja.save
-        format.html { redirect_to @ninja, notice: 'Ninja was successfully created.' }
+        format.html { redirect_to @ninja, notice: "Ninja was successfully created." }
         format.json { render :show, status: :created, location: @ninja }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class NinjasController < ApplicationController
   def update
     respond_to do |format|
       if @ninja.update(ninja_params)
-        format.html { redirect_to @ninja, notice: 'Ninja was successfully updated.' }
+        format.html { redirect_to @ninja, notice: "Ninja was successfully updated." }
         format.json { render :show, status: :ok, location: @ninja }
       else
         format.html { render :edit }
@@ -56,31 +56,30 @@ class NinjasController < ApplicationController
   def destroy
     @ninja.destroy
     respond_to do |format|
-      format.html { redirect_to ninjas_url, notice: 'Ninja was successfully destroyed.' }
+      format.html { redirect_to ninjas_url, notice: "Ninja was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   def checkin_ninja
-	@ninja = Ninja.find(params[:id])
-	@ninja.increment!(:n_ninja)
-	redirect_to @ninja
+    @ninja = Ninja.find(params[:id])
+    @ninja.increment!(:n_ninja)
+    redirect_to @ninja
   end
-	
+
   def checkin_mentor
-	@ninja = Ninja.find(params[:id])
-	@ninja.increment!(:n_mentor)
-	redirect_to @ninja
+    @ninja = Ninja.find(params[:id])
+    @ninja.increment!(:n_mentor)
+    redirect_to @ninja
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ninja
-      @ninja = Ninja.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ninja_params
-      params.require(:ninja).permit(:nome, :n_ninja, :n_mentor, :nome_ed, :contacto_ed, :nota)
-    end
+  def set_ninja
+    @ninja = Ninja.find(params[:id])
+  end
+
+  def ninja_params
+    params.require(:ninja).permit(:nome, :n_ninja, :n_mentor, :nome_ed, :contacto_ed, :nota)
+  end
 end
