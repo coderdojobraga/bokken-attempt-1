@@ -1,0 +1,35 @@
+p#notice= notice
+p
+  strong Nome:
+  = @ninja.nome
+p
+  strong Numero de sessoes como ninja:
+  = @ninja.n_ninja
+p
+  strong Numero de sessoes como mentor:
+  = @ninja.n_mentor
+p
+  strong Nome encarregado de educacao:
+  = @ninja.nome_ed
+p
+  strong Contacto encarregado de educacao:
+  = @ninja.contacto_ed
+p
+  strong Nota:
+  = @ninja.nota
+div
+  = form_for :ninja, url: checkin_ninja_ninja_url(params[:id]), method: :put do |f|
+    div= f.hidden_field :n_ninja
+    div= f.hidden_field :id
+    = f.submit "Check In ninja", class: "btn btn-large btn-primary"
+div
+  = form_for :ninja, url: checkin_mentor_ninja_url(params[:id]), method: :put do |f|
+    div= f.hidden_field :n_mentor
+    div= f.hidden_field :id
+    = f.submit "Check in mentor", class: "btn btn-large btn-primary"
+= link_to 'Edit', edit_ninja_path(@ninja)
+| \
+= link_to 'Destroy', @ninja, method: :delete, data: { confirm: 'Are you sure?' }
+| \
+= link_to 'Back', ninjas_path
+
