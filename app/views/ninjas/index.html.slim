@@ -1,0 +1,12 @@
+p#notice= notice
+h1 Ninjas
+= link_to 'New Ninja', new_ninja_path
+table
+  thead
+    tr
+      th Nome
+  tbody
+    - @ninjas.order('name').each do |ninja|
+      tr
+        td= link_to ninja.name, ninja
+br/
