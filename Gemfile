@@ -8,6 +8,7 @@ end
 ruby "2.4.1"
 
 gem "dotenv-rails"
+gem "email_validator"
 gem "foreman"
 gem "pg"
 gem "pry-rails"
@@ -22,6 +23,7 @@ group :development, :test do
   gem "awesome_print"
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "factory_girl_rails"
+  gem "faker"
   gem "pry-byebug"
   gem "pry-remote"
   gem "rspec-rails", "~> 3.5.1"
@@ -40,6 +42,7 @@ end
 
 group :test do
   gem "database_cleaner"
+  gem "rails-controller-testing"
   gem "shoulda-matchers"
   gem "simplecov", require: false
 end
