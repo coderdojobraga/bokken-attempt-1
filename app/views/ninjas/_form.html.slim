@@ -1,0 +1,23 @@
+= form_with(model: ninja, local: true) do |form|
+  - if ninja.errors.any?
+    #error_explanation
+      h2
+        = pluralize(ninja.errors.count, "error")
+        | prohibited this ninja from being saved:
+      ul
+        - ninja.errors.full_messages.each do |message|
+          li= message
+  .field
+    = form.label :name, 'Nome'
+    = form.text_field :name, placeholder: "Diogo Silva", id: :ninja_name
+  .field
+    = form.label :guardian_name, 'Nome encarregado de educação'
+    = form.text_field :guardian_name, placeholder: "Pedro Silva",  id: :ninja_guardian_name
+  .field
+    = form.label :guardian_contact, 'Contacto encarregado de educação'
+    = form.text_field :guardian_contact, placeholder: "pedro_silva@mail.com", id: :ninja_guardian_contact
+  .field
+    = form.label :additional_information, 'Informação adicional'
+    = form.text_area :additional_information , placeholder: "Informação adicional", id: :ninja_additional_information
+  .actions
+    = form.submit

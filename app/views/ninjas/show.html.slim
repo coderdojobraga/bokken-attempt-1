@@ -1,0 +1,19 @@
+p#notice= notice
+p
+  strong Nome:
+  = @ninja.name
+p
+  strong Nome encarregado de educação:
+  = @ninja.guardian_name
+p
+  strong Contacto encarregado de educação:
+  = @ninja.guardian_contact
+p
+  strong Informação adicional:
+  = @ninja.additional_information
+
+= link_to 'Edit', edit_ninja_path(@ninja)
+| \
+= link_to 'Destroy', @ninja, method: :delete, data: { confirm: 'Are you sure?' }
+| \
+= link_to 'Back', ninjas_path
