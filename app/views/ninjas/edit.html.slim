@@ -1,0 +1,5 @@
+h1 Editing Ninja
+= render 'form', ninja: @ninja
+= link_to 'Destroy', @ninja, method: :delete, data: { confirm: 'Are you sure?' }
+| \
+= link_to 'Back', ninjas_path
