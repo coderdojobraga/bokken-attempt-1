@@ -18,37 +18,37 @@ class NinjasController < ApplicationController
   def create
     @ninja = Ninja.new(ninja_params)
 
-    respond_to do |format|
-      if @ninja.save
-        format.html { redirect_to @ninja, notice: "Ninja was successfully created." }
-      else
-        format.html { render :new }
-      end
+    if @ninja.save
+      redirect_to @ninja, notice: "Ninja was successfully created."
+    else
+      render :new
     end
   end
 
   def update
     @ninja = Ninja.find(params[:id])
-    respond_to do |format|
-      if @ninja.update(ninja_params)
-        format.html { redirect_to @ninja, notice: "Ninja was successfully updated." }
-      else
-        format.html { render :edit }
-      end
+
+    if @ninja.update(ninja_params)
+      redirect_to @ninja, notice: "Ninja was successfully updated."
+    else
+      render :edit
     end
   end
 
   def destroy
-    @ninja = Ninja.find(params[:id])
-    @ninja.destroy
-    respond_to do |format|
-      format.html { redirect_to ninjas_url, notice: "Ninja was successfully destroyed." }
+    ninja = Ninja.where(id: params[:id]).first
+
+    if ninja.try(:destroy)
+      redirect_to ninjas_url, notice: "Ninja was successfully destroyed."
+    else
+      redirect_to ninjas_url
     end
   end
 
   private
 
   def ninja_params
-    params.require(:ninja).permit(:name, :guardian_name, :guardian_contact, :additional_information)
+    params.require(:ninja).permit(:name, :guardian_name,
+      :guardian_contact, :additional_information)
   end
 end
